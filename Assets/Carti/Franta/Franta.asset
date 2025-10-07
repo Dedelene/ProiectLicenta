@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52746c946820046810ac55fbbfcc5a, type: 3}
+  m_Name: Franta
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 21300000, guid: 1572d8c12e7508640a3c1d5ac0bf9c8b, type: 3}
+  - {fileID: 21300000, guid: 49f84621b208b404fbe639ad972a8f47, type: 3}
+  - {fileID: 21300000, guid: c8aecceb7d9c42442b221dd2ca430e39, type: 3}
+  - {fileID: 21300000, guid: 2bf45e938983f314dbf82404ce9554ec, type: 3}
+  - {fileID: 21300000, guid: 4c10b637021ecdd48844e0cf49e19ee6, type: 3}

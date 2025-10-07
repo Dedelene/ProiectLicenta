@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52746c946820046810ac55fbbfcc5a, type: 3}
+  m_Name: Indicatori
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 21300000, guid: 0f6ab63e49a6c444db9c28748cc8acd6, type: 3}
+  - {fileID: 21300000, guid: 9df393858c0952040a539554876b9c6d, type: 3}
+  - {fileID: 21300000, guid: 0767f46a5337c744084cbbc3cce9ddc8, type: 3}
+  - {fileID: 21300000, guid: 5a09ecf10d5da7241811b03a8602f487, type: 3}
+  - {fileID: 21300000, guid: 4303bf1a0672ce04a9e3bebc26513632, type: 3}
+  - {fileID: 21300000, guid: aaeb044fe00acac4997c9932244736d3, type: 3}

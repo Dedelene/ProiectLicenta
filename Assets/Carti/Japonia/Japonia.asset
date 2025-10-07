@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52746c946820046810ac55fbbfcc5a, type: 3}
+  m_Name: Japonia
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 21300000, guid: 64ab3890e1b3650438e79728018fc53e, type: 3}
+  - {fileID: 21300000, guid: 97b3ba76f3429d54888d752ef3c4a0ee, type: 3}
+  - {fileID: 21300000, guid: 2f7e6a9d96a82c94faf693f1b6936a35, type: 3}
+  - {fileID: 21300000, guid: d149f9fd81881674f8e03aa15a49e188, type: 3}
+  - {fileID: 21300000, guid: 10dbb13176506bc4887a127549b0c790, type: 3}
