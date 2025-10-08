@@ -63,3 +63,6 @@ https://sketchfab.com/license
 *Floor - Marble Tiled Floor - https://sketchfab.com/3d-models/floor-marble-tiled-floor-2b8040dbbcbc4b1894eb7cd1325a30ae
     Autor: tsteff63
     Licenta: Creative Commons Attribution - https://creativecommons.org/licenses/by/4.0/
+*flowers with the vase - https://sketchfab.com/3d-models/flowers-with-the-vase-0f58352d377840cdbeef0bd71b24aff6
+    Autor: Musaev H.N.
+    Licenta: Creative Commons Attribution - https://creativecommons.org/licenses/by/4.0/
