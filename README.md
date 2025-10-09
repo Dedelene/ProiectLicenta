@@ -66,3 +66,24 @@ https://sketchfab.com/license
 *flowers with the vase - https://sketchfab.com/3d-models/flowers-with-the-vase-0f58352d377840cdbeef0bd71b24aff6
     Autor: Musaev H.N.
     Licenta: Creative Commons Attribution - https://creativecommons.org/licenses/by/4.0/
+*Gislinge Viking Boat - https://sketchfab.com/3d-models/gislinge-viking-boat-01098ad7973647a9b558f41d2ebc5193
+    Autor: Opus Poly
+    Licenta: Creative Commons Attribution - https://creativecommons.org/licenses/by/4.0/
+*Globe Showpiece Window into World History - https://sketchfab.com/3d-models/globe-showpiece-window-into-world-history-d4dd6ba2da0d44ec8f63fb96fe6b76fb
+    Autor: SAdityaSinha
+*Hanger - https://sketchfab.com/3d-models/hanger-71b4be37340f411ba1b59b011f029e70
+    Autor: CakeTheSnake
+*Inkwell with feather pen - https://sketchfab.com/3d-models/inkwell-with-feather-pen-cdfc5e993a8040ef9bb3233c2bbe7179
+    Autor: shuvalov.di
+*Old Soviet Desk Lamp - https://sketchfab.com/3d-models/old-soviet-desk-lamp-0352e802f63b452fba711f02da59038f
+    Autor: Kozlov Maksim
+*Worn Leather Office Chair - https://sketchfab.com/3d-models/worn-leather-office-chair-003b00c7cdd348888296b85c40275a50
+    Autor: FordVFX
+*Lamp 20 - https://sketchfab.com/3d-models/lamp-20-e6d76983bce44aa4847a9b80bf56b3ae
+    Autor: Prince Obrymec
+*Books with magnifier - https://sketchfab.com/3d-models/books-with-magnifier-cc153ce6258b4e538d9fc7da5b5d0fe4
+    Autor: shuvalov.di
+*Map Scroll Rolled Up - https://sketchfab.com/3d-models/map-scroll-rolled-up-15eff9ee7db24b5bb0765f0e5a2ed899
+    Autor: chloebowman
+*Equestrian statue of Napoleon - https://sketchfab.com/3d-models/equestrian-statue-of-napoleon-ad3fe0536f4f40c5a2de5b5649b2e639
+    Autor: Loïc Norgeot
