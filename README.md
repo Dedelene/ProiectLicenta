@@ -87,3 +87,5 @@ https://sketchfab.com/license
     Autor: chloebowman
 *Equestrian statue of Napoleon - https://sketchfab.com/3d-models/equestrian-statue-of-napoleon-ad3fe0536f4f40c5a2de5b5649b2e639
     Autor: Loïc Norgeot
+*Monstera Deliciosa Potted Mid-Century plant - https://sketchfab.com/3d-models/monstera-deliciosa-potted-mid-century-plant-1ab9bf841df04c07b1819be596327629
+    Autor: Giora
