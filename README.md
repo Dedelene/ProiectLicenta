@@ -87,9 +87,32 @@ https://sketchfab.com/license
     Autor: chloebowman
 *Equestrian statue of Napoleon - https://sketchfab.com/3d-models/equestrian-statue-of-napoleon-ad3fe0536f4f40c5a2de5b5649b2e639
     Autor: Loïc Norgeot
+*Newton Cradle Balance Balls - https://sketchfab.com/3d-models/newton-cradle-balance-balls-d819d785b6e5457ab4d94ce500371023
+    Autor: rickmaolly
+*Office Chair - https://sketchfab.com/3d-models/office-chair-a7fefb5dde954c84896949246dde5be6
+    Autor: artvolodskikh
+*Low poly panel code ( keypad ) - https://sketchfab.com/3d-models/low-poly-panel-code-keypad-cbd5419755bc4711b1d9c0e0c3527f9f
+    Autor: Aya Dja
+*Indoor Plant with pot (a) - https://sketchfab.com/3d-models/indoor-plant-with-pot-a-fc5448f56b4940498079147d7d557ac8
+    Autor: vyacha3d
+*Queen (chess) / White + Black - https://sketchfab.com/3d-models/queen-chess-white-black-615f035411774e49854b19557f9fee67
+    Autor - Walor
+*Wall candle - https://sketchfab.com/3d-models/wall-candle-593098a9230d4438a40688957784237d
+    Autor: Valo Niskanen
+*CC0 - Shelf 5 - https://sketchfab.com/3d-models/cc0-shelf-5-4525d20aa1224624b738b6aa3a390a03
+    Autor: plaggy
+*Stylish Hat (Dark) - https://sketchfab.com/3d-models/stylish-hat-dark-d31ab63dbbe54c49a4c698605c23681b
+    Autor: shimtimultimedia
+*Table - https://sketchfab.com/3d-models/table-1132fa2850a24917892733566bd68e74
+    Autor: yryabchenko
+*Tall Shelf - https://sketchfab.com/3d-models/tall-shelf-f14b9492bf3f43108d1163a016a7327a
+    Autor: Blender3D
 *Monstera Deliciosa Potted Mid-Century plant - https://sketchfab.com/3d-models/monstera-deliciosa-potted-mid-century-plant-1ab9bf841df04c07b1819be596327629
     Autor: Giora
 *Scroll - https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77
     Autor: FlukierJupiter
 *Tall Shelf - https://sketchfab.com/3d-models/tall-shelf-f14b9492bf3f43108d1163a016a7327a
     Autor: Blender3D
+*Umbrella N100310.3DS - https://free3d.io/?a=download&id=ca4224bd
+*Pencil holder with pencils and paintbrushes - [radioape](https://sketchfab.com/3d-models/pencil-holder-with-pencils-and-paintbrushes-bb1e7d92e8f044d4a59ea549e81f9b63)
+    Autor: radioape
