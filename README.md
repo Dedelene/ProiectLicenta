@@ -89,3 +89,7 @@ https://sketchfab.com/license
     Autor: Loïc Norgeot
 *Monstera Deliciosa Potted Mid-Century plant - https://sketchfab.com/3d-models/monstera-deliciosa-potted-mid-century-plant-1ab9bf841df04c07b1819be596327629
     Autor: Giora
+*Scroll - https://sketchfab.com/3d-models/scroll-7450e494eb654e9b937bb52724220e77
+    Autor: FlukierJupiter
+*Tall Shelf - https://sketchfab.com/3d-models/tall-shelf-f14b9492bf3f43108d1163a016a7327a
+    Autor: Blender3D
