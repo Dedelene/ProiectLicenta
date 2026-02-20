@@ -22,6 +22,8 @@ public class BookInteractable : MonoBehaviour
 
     public void OnPick()
     {
+
+        if (BookUI.IsOpen) return;
     
         if (data == null)
         {

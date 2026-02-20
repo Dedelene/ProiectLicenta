@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DoorClickController : MonoBehaviour
@@ -6,6 +7,7 @@ public class DoorClickController : MonoBehaviour
     public float openAngle = 90f;
     public float speed = 2f;
     private bool isOpen = false;
+    private bool isMoving = false;
     private Quaternion closedRotation;
     private Quaternion openRotation;
 
@@ -17,28 +19,34 @@ public class DoorClickController : MonoBehaviour
         openRotation = Quaternion.Euler(pivot.localEulerAngles + new Vector3(0, openAngle, 0));
     }
 
-    void OnMouseDown()
+    public void ToggleDoor()
     {
-        isOpen = !isOpen;
-        if (doorCollider != null) doorCollider.enabled = false;
-        Invoke("EnableCollider", 1.5f);
-    }
-    void EnableCollider()
-    {
-        if (doorCollider != null) doorCollider.enabled = true;
+        if (!isMoving)
+            StartCoroutine(AnimateDoor());
     }
 
-    void Update()
+    private IEnumerator AnimateDoor()
     {
-        if (isOpen)
-            pivot.localRotation = Quaternion.Slerp(pivot.localRotation, openRotation, Time.deltaTime * speed);
-        else
-            pivot.localRotation = Quaternion.Slerp(pivot.localRotation, closedRotation, Time.deltaTime * speed);
+        isMoving = true;
+
+        if (doorCollider != null) doorCollider.enabled = false;
+
+        Quaternion target = isOpen ? closedRotation : openRotation;
+        Quaternion start = pivot.localRotation;
+
+        float t = 0f;
+        while(t < 1f)
+        {
+            t += Time.deltaTime * speed;
+            pivot.localRotation = Quaternion.Slerp(start, target, t);
+            yield return null;
+        }
+
+        pivot.localRotation = target;
+        isOpen = !isOpen;
+
+        if (doorCollider != null) doorCollider.enabled = true;
+
+        isMoving = false;
     }
 }
-
-
-
-
-
-

@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ILargeInspect : MonoBehaviour
+public class LargeInspect : MonoBehaviour
 {
     public GameObject inspectCanvas;   
     public Image inspectImage;         
     public Sprite itemSprite;
     public MonoBehaviour cameraController;
+    public MonoBehaviour movementController;
 
-    private bool isInspecting = false;
+    public bool isInspecting = false;
 
     void Start()
     {
@@ -16,16 +17,19 @@ public class ILargeInspect : MonoBehaviour
             inspectCanvas.SetActive(false);
     }
 
-    void OnMouseDown()
+    private void Update()
     {
-        if (!isInspecting)
-            EnterInspect();
+        if(isInspecting && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape))){
+            ExitInspect();
+        }
     }
 
-    void EnterInspect()
+    public void EnterInspect()
     {
         isInspecting = true;
+
         if (cameraController) cameraController.enabled = false;
+        if (movementController) movementController.enabled = false;
 
         if (inspectCanvas != null)
         {
@@ -41,7 +45,9 @@ public class ILargeInspect : MonoBehaviour
     public void ExitInspect()
     {
         isInspecting = false;
+
         if (cameraController) cameraController.enabled = true;
+        if (movementController) movementController.enabled = true;
 
         if (inspectCanvas != null)
             inspectCanvas.SetActive(false);

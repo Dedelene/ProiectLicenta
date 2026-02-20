@@ -1,19 +1,24 @@
+﻿using System;
+using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
+[Serializable]
 public class SaveData
 {
-    public string sceneName;
-    public float playerX;
-    public float playerY;
-    public float playerZ;
+    public float playerX, playerY, playerZ;
+
+    public float rotationX, rotationY;
+
+    public bool isOpen;
 }
 
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    private static GameManager instance;
+    public static GameManager instance;
+    string saveFilePath;
 
     void Awake()
     {
@@ -21,6 +26,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            saveFilePath = Path.Combine(Application.persistentDataPath, "savegame.json");
         }
         else
         {
@@ -30,50 +36,109 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
+
         if (player == null)
         {
-            Debug.LogWarning("No player assigned to GameManager!");
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
+        if (player == null)
+        {
+            Debug.LogError("Player nu a fost găsit!");
             return;
         }
 
-        SaveData data = new SaveData();
-        data.sceneName = SceneManager.GetActiveScene().name;
+        SaveData data = new ();
+
         Vector3 pos = player.transform.position;
         data.playerX = pos.x;
         data.playerY = pos.y;
         data.playerZ = pos.z;
 
-        string json = JsonUtility.ToJson(data);
-        PlayerPrefs.SetString("SaveData", json);
-        PlayerPrefs.Save();
+        data.rotationY = player.transform.rotation.eulerAngles.y;
+        Camera cam = player.GetComponentInChildren<Camera>();
+        if (cam != null)
+        {
+            data.rotationX = cam.transform.localRotation.eulerAngles.x;
+        }
 
-        Debug.Log($"Game saved in scene: {data.sceneName}, position: {pos}");
+        DoorController door = FindAnyObjectByType<DoorController>();
+        data.isOpen = door.isOpen;
+
+        try
+        {
+            string json = JsonUtility.ToJson(data, true);
+            string directory = Path.GetDirectoryName(saveFilePath);
+            if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
+            File.WriteAllText(saveFilePath, json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Eroare la scrierea fisierului: " + e.Message);
+        }
     }
 
     public void LoadGame()
     {
-        if (PlayerPrefs.HasKey("SaveData"))
+        if (File.Exists(saveFilePath))
         {
-            string json = PlayerPrefs.GetString("SaveData");
+            string json = File.ReadAllText(saveFilePath);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            SceneManager.LoadScene(data.sceneName);
-            StartCoroutine(RestorePosition(data));
+            StartCoroutine(LoadAndPosition(data));
+
         }
         else
         {
-            Debug.Log("No save found.");
+            Debug.LogError("Nu exista nicio salvare la: " + saveFilePath);
+            SceneManager.LoadScene("Room1");
+            return;
         }
     }
 
-    private System.Collections.IEnumerator RestorePosition(SaveData data)
+    IEnumerator LoadAndPosition(SaveData data)
     {
-        yield return null;
+        if(SceneFader.instance != null)
+        {
+            SceneFader.instance.FadeToBlackOnly();
+            yield return new WaitForSeconds(2f / SceneFader.instance.fadeSpeed);
+        }
 
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Room1");
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
+        {
+            if (player.TryGetComponent<CharacterController>(out var controller)) controller.enabled = false;
+
             player.transform.position = new Vector3(data.playerX, data.playerY, data.playerZ);
+
+            player.transform.rotation = Quaternion.Euler(0, data.rotationY, 0);
+
+            CameraMovement cam = player.GetComponentInChildren<CameraMovement>();
+            if (cam != null)
+            {
+                float rotX = data.rotationX;
+                if (rotX > 180) rotX -= 360;
+                cam.xRotation = rotX;
+                cam.transform.localRotation = Quaternion.Euler(rotX, 0, 0);
+            }
+
+            Physics.SyncTransforms();
+
+            if (controller != null) controller.enabled = true;
+        }
+
+        DoorController door = FindAnyObjectByType<DoorController>();
+        door.LoadStatus(data.isOpen);
+
+        if (SceneFader.instance != null)
+            SceneFader.instance.FadeIn();
     }
 }

@@ -5,7 +5,7 @@ public class KeypadInteractable : MonoBehaviour
     public Camera mainCam;
     public Camera keypadCam;
     public GameObject crosshair;
-    public GameObject door;
+    public DoorController door;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -13,36 +13,26 @@ public class KeypadInteractable : MonoBehaviour
 
     private bool isUsingKeypad = false;
     private string inputCode = "";
-    private string correctCode = "11213";
+    private readonly string correctCode = "11213";
+    readonly int maxLength = 5;
 
     void Update()
     {
-        if (isUsingKeypad && Input.GetKeyDown(KeyCode.Escape))
+        if (!isUsingKeypad) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitKeypad();
         }
-        if (!isUsingKeypad && Input.GetMouseButtonDown(0))
-        {
-            Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-            int mask = LayerMask.GetMask("Interactable");
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 3f, mask))
-            {
-                if (hit.collider.gameObject.name == "panel_code")
-                {
-                    EnterKeypad();
-                }
-            }
-        }
-        if (isUsingKeypad && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Ray ray = keypadCam.ScreenPointToRay(Input.mousePosition);
-            int mask = LayerMask.GetMask("KeypadButtons");
-
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, mask))
-            {
-                KeypadButton btn = hit.collider.GetComponent<KeypadButton>();
-                if (btn != null) btn.Press();
+            if(Physics.Raycast(ray, out RaycastHit hit, 100f)){
+                if(hit.collider.TryGetComponent<KeypadButton>(out var btn))
+                {
+                    btn.Press();
+                }
             }
         }
     }
@@ -50,6 +40,7 @@ public class KeypadInteractable : MonoBehaviour
     public void EnterKeypad()
     {
         isUsingKeypad = true;
+        inputCode = "";
 
         mainCam.gameObject.SetActive(false);
         keypadCam.gameObject.SetActive(true);
@@ -73,38 +64,46 @@ public class KeypadInteractable : MonoBehaviour
     }
     public void OnKeyPress(string key)
     {
-        if (key == "Escape")
+        if(key == "Escape")
         {
             inputCode = "";
             ExitKeypad();
             return;
         }
-        if(key == "Enter")
+
+        if (key == "Enter")
         {
-            if(inputCode == correctCode)
-            {
-                inputCode = "";
-                if (door != null)
-                {
-                    DoorController controller = door.GetComponent<DoorController>();
-                    if (controller != null)
-                    {
-                        controller.OpenDoor();
-                    }
-                    ExitKeypad();
-                }
-            }
-            else
-            {
-                inputCode = "";
-                if (audioSource != null && buzzClip != null)
-                {
-                    audioSource.PlayOneShot(buzzClip);
-                }
-            }
+            CheckCode();
             return;
         }
-        inputCode += key;
+
+        if(inputCode.Length < maxLength)
+        {
+            inputCode += key;
+        }
+
+    }
+
+    void CheckCode()
+    {
+
+        if (inputCode == correctCode)
+        {
+            if (door != null)
+            {
+                door.OpenDoor();
+            }
+            ExitKeypad();
+        }
+        else
+        {
+            inputCode = "";
+            if (audioSource != null && buzzClip != null)
+            {
+                audioSource.PlayOneShot(buzzClip);
+            }
+        }
+        return;
     }
 
 }

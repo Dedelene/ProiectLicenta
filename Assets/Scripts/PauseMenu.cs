@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenuUI;
-    public GameManager gameManager;
     private bool isPaused = false;
 
     void Update()
@@ -23,6 +22,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void PauseGame()
@@ -30,13 +32,20 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void SaveGame()
     {
-        if (gameManager != null)
+        if (GameManager.instance != null)
         {
-            gameManager.SaveGame();
+            GameManager.instance.SaveGame();
+        }
+        else
+        {
+            Debug.LogError("PauseMenu: GameManager.instance este null!");
         }
     }
 

@@ -14,6 +14,7 @@ public class BookUI : MonoBehaviour
     public Button closeButton;
     public GameObject dimBackground;
     public MonoBehaviour cameraController;
+    public MonoBehaviour movementController;
 
     private Sprite[] pages;
     private int currentPage = 0;
@@ -28,8 +29,7 @@ public class BookUI : MonoBehaviour
 
         if (dimBackground)
         {
-            var bgBtn = dimBackground.GetComponent<Button>();
-            if (bgBtn == null) bgBtn = dimBackground.AddComponent<Button>();
+            if (!dimBackground.TryGetComponent<Button>(out var bgBtn)) bgBtn = dimBackground.AddComponent<Button>();
             bgBtn.transition = Selectable.Transition.None;
             bgBtn.onClick.AddListener(CloseBook);
         }
@@ -42,7 +42,6 @@ public class BookUI : MonoBehaviour
 
     void Update()
     {
-        bookUI.SetActive(true);
         if (!IsOpen) return;
         if (Input.GetKeyDown(KeyCode.RightArrow)) NextPage();
         if (Input.GetKeyDown(KeyCode.LeftArrow)) PrevPage();
@@ -54,6 +53,7 @@ public class BookUI : MonoBehaviour
 
         bookUI.SetActive(true);
         if (cameraController) cameraController.enabled = false;
+        if (movementController) movementController.enabled = false;
 
         if (contentPages == null || contentPages.Length == 0)
         {
@@ -73,10 +73,13 @@ public class BookUI : MonoBehaviour
 
     public void CloseBook()
     {
-        gameObject.SetActive(false);
         IsOpen = false;
 
+        if (bookUI) bookUI.SetActive(false);
+        gameObject.SetActive(false);
+
         if (cameraController) cameraController.enabled = true;
+        if (movementController) movementController.enabled = true;
         bookUI.SetActive(false);
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

@@ -3,17 +3,23 @@ using System.Collections;
 
 public class DoorController : MonoBehaviour
 {
-    public float openAngle = -55f;
+    public float openAngle = -50f;
     public float duration = 2f;
-    private bool isOpen = false;
+    public bool isOpen = false;
 
     private Quaternion closedRotation;
     private Quaternion openedRotation;
 
     void Start()
     {
-        closedRotation = transform.rotation;
+        closedRotation = transform.localRotation;
         openedRotation = closedRotation * Quaternion.Euler(0, openAngle, 0);
+    }
+
+    public void LoadStatus(bool openStatus)
+    {
+        isOpen = openStatus;
+        transform.localRotation = isOpen ? openedRotation : closedRotation;
     }
 
     public void OpenDoor()
@@ -25,18 +31,18 @@ public class DoorController : MonoBehaviour
     IEnumerator OpenSmoothly()
     {
         isOpen = true;
-        Quaternion startRot = transform.rotation;
+        Quaternion startRot = transform.localRotation;
         Quaternion endRot = openedRotation;
 
         float t = 0;
         while (t < 1f)
         {
             t += Time.deltaTime / duration;
-            transform.rotation = Quaternion.Slerp(startRot, endRot, t);
+            transform.localRotation = Quaternion.Slerp(startRot, endRot, t);
             yield return null;
         }
 
-        transform.rotation = endRot;
+        transform.localRotation = endRot;
     }
 }
 
