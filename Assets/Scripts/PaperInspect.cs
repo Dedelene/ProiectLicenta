@@ -18,7 +18,7 @@ public class InspectableItem : MonoBehaviour
     }
     private void Update()
     {
-        if (isInspecting && (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape)))
+        if (isInspecting && (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape)))
             ExitInspect();
     }
     public void EnterInspect()

@@ -20,7 +20,7 @@ public class KeypadInteractable : MonoBehaviour
     {
         if (!isUsingKeypad) return;
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(1))
         {
             ExitKeypad();
         }

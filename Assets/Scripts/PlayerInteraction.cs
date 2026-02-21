@@ -67,6 +67,6 @@ public class PlayerInteraction : MonoBehaviour
         else if (hit.collider.TryGetComponent<CupboardDoor>(out var cupboard)) cupboard.ToggleDoor();
         else if (hit.collider.TryGetComponent<LargeInspect>(out var large)) large.EnterInspect();
         else if (hit.collider.TryGetComponent<BookInteractable>(out var book)) book.OnPick();
-        else if (hit.collider.TryGetComponent<ChestController>(out var chest)) chest.OpenChest();
+        else if (hit.collider.TryGetComponent<ChestInteraction>(out var chest)) chest.EnterLockPad();
     }
 }
