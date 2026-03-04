@@ -45,7 +45,7 @@ public class BookUI : MonoBehaviour
         if (!IsOpen) return;
         if (Input.GetKeyDown(KeyCode.RightArrow)) NextPage();
         if (Input.GetKeyDown(KeyCode.LeftArrow)) PrevPage();
-        if (Input.GetKeyDown(KeyCode.Escape)) CloseBook();
+        if (Input.GetMouseButtonDown(1)) CloseBook();
     }
     
     public void OpenBook(Sprite[] contentPages)

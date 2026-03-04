@@ -13,7 +13,7 @@ public class KeypadInteractable : MonoBehaviour
 
     private bool isUsingKeypad = false;
     private string inputCode = "";
-    private readonly string correctCode = "11213";
+    private readonly string correctCode = "67200";
     readonly int maxLength = 5;
 
     void Update()

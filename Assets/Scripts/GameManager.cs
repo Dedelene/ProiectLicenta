@@ -11,7 +11,7 @@ public class SaveData
 
     public float rotationX, rotationY;
 
-    public bool isOpen;
+    public bool isDoorOpen, isChestOpen, isHeld;
 }
 
 public class GameManager : MonoBehaviour
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public static GameManager instance;
     string saveFilePath;
+    GameObject lockPad;
 
     void Awake()
     {
@@ -63,7 +64,13 @@ public class GameManager : MonoBehaviour
         }
 
         DoorController door = FindAnyObjectByType<DoorController>();
-        data.isOpen = door.isOpen;
+        data.isDoorOpen = door.isOpen;
+
+        ChestController chest = FindAnyObjectByType<ChestController>();
+        data.isChestOpen = chest.isOpen;
+
+        NoteController note = FindAnyObjectByType<NoteController>();
+        data.isHeld = note.isHeld;
 
         try
         {
@@ -136,7 +143,22 @@ public class GameManager : MonoBehaviour
         }
 
         DoorController door = FindAnyObjectByType<DoorController>();
-        door.LoadStatus(data.isOpen);
+        door.LoadStatus(data.isDoorOpen);
+
+        ChestController chest = FindAnyObjectByType<ChestController>();
+        chest.LoadStatus(data.isChestOpen);
+
+        if (data.isChestOpen)
+        {
+            lockPad = GameObject.FindGameObjectWithTag("Lock");
+            if (lockPad)
+            {
+                lockPad.SetActive(false);
+            }
+        }
+
+        NoteController note = FindAnyObjectByType<NoteController>();
+        note.LoadStatus(data.isHeld);
 
         if (SceneFader.instance != null)
             SceneFader.instance.FadeIn();

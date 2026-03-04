@@ -65,8 +65,9 @@ public class PlayerInteraction : MonoBehaviour
         else if (hit.collider.TryGetComponent<InspectableItem>(out var inspectable)) inspectable.EnterInspect();
         else if (hit.collider.TryGetComponent<DoorClickController>(out var door)) door.ToggleDoor();
         else if (hit.collider.TryGetComponent<CupboardDoor>(out var cupboard)) cupboard.ToggleDoor();
-        else if (hit.collider.TryGetComponent<LargeInspect>(out var large)) large.EnterInspect();
         else if (hit.collider.TryGetComponent<BookInteractable>(out var book)) book.OnPick();
         else if (hit.collider.TryGetComponent<ChestInteraction>(out var chest)) chest.EnterLockPad();
+        else if (hit.collider.TryGetComponent<NoteController>(out var note)) note.Take();
+        else if (hit.collider.TryGetComponent<NoteSocket>(out var socket)) socket.TryAttach();
     }
 }

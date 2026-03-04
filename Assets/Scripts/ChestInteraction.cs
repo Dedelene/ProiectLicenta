@@ -9,7 +9,13 @@ public class ChestInteraction : MonoBehaviour
     public ChestController chest;
     public GameObject crosshair;
 
-    bool isUsingLock = false;
+    public bool isUsingLock = false;
+    LockWheelManager lockWheelManager;
+
+    private void Start()
+    {
+        lockWheelManager = GetComponent<LockWheelManager>();
+    }
 
     void Update()
     {
@@ -28,19 +34,16 @@ public class ChestInteraction : MonoBehaviour
 
         if (crosshair != null) crosshair.SetActive(false);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if (lockWheelManager != null)
+            lockWheelManager.UpdateVisual();
     }
 
-    void ExitLockPad()
+    public void ExitLockPad()
     {
         isUsingLock = false;
         chestCam.gameObject.SetActive(false);
         mainCam.gameObject.SetActive(true);
 
         if(crosshair != null ) crosshair.SetActive(true);
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

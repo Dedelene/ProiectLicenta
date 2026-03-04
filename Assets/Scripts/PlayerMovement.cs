@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
     CharacterController controller;
+    public float gravity = -9.8f;
+
+    Vector3 velocity;
+    bool isGrounded;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isGrounded = controller.isGrounded;
+
+        if(isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
         if (controller == null || !controller.enabled) return;
 
@@ -29,5 +39,8 @@ public class PlayerMovement : MonoBehaviour
             move.Normalize();
 
         controller.Move(speed * Time.deltaTime * move);
+
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
     }
 }
