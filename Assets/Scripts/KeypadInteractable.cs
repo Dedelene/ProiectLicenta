@@ -16,6 +16,8 @@ public class KeypadInteractable : MonoBehaviour
     private readonly string correctCode = "67200";
     readonly int maxLength = 5;
 
+    public RoomsManager roomManager;
+
     void Update()
     {
         if (!isUsingKeypad) return;
@@ -93,6 +95,12 @@ public class KeypadInteractable : MonoBehaviour
             {
                 door.OpenDoor();
             }
+
+            if (roomManager != null)
+            {
+                roomManager.OnDoorOpened();
+            }
+
             ExitKeypad();
         }
         else

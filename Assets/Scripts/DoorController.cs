@@ -28,6 +28,12 @@ public class DoorController : MonoBehaviour
             StartCoroutine(OpenSmoothly());
     }
 
+    public void CloseDoor()
+    {
+        if (isOpen)
+            StartCoroutine(CloseSmoothly());
+    }
+
     IEnumerator OpenSmoothly()
     {
         isOpen = true;
@@ -43,6 +49,22 @@ public class DoorController : MonoBehaviour
         }
 
         transform.localRotation = endRot;
+    }
+
+    IEnumerator CloseSmoothly()
+    {
+        isOpen = false;
+        Quaternion startRot = transform.localRotation;
+        Quaternion endRot = closedRotation;
+
+        float t = 0;
+        while(t < 1f)
+        {
+            t += Time.deltaTime / duration;
+            transform.localRotation = Quaternion.Slerp(startRot, endRot, t);
+            yield return null;
+        }
+        transform.localRotation = endRot;   
     }
 }
 

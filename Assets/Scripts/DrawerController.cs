@@ -25,8 +25,6 @@ public class DrawerController : MonoBehaviour
             StartCoroutine(MoveDrawer());
     }
 
-    public Transform player;
-
     private IEnumerator MoveDrawer()
     {
         isMoving = true;
@@ -35,8 +33,6 @@ public class DrawerController : MonoBehaviour
         Vector3 start = transform.localPosition;
 
         float t = 0f;
-
-        player.SetParent(transform, true);
 
         while (t < 1f)
         {
@@ -48,7 +44,5 @@ public class DrawerController : MonoBehaviour
         transform.localPosition = target;
         isOpen = !isOpen;
         isMoving = false;
-
-        player.SetParent(null);
     }
 }

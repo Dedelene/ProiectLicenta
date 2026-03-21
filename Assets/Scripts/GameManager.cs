@@ -17,7 +17,7 @@ public class SaveData
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
-    public static GameManager instance;
+    public static GameManager instance = null;
     string saveFilePath;
     GameObject lockPad;
 
@@ -144,6 +144,12 @@ public class GameManager : MonoBehaviour
 
         DoorController door = FindAnyObjectByType<DoorController>();
         door.LoadStatus(data.isDoorOpen);
+
+        if (data.isDoorOpen)
+        {
+            RoomsManager roomsManager = FindAnyObjectByType<RoomsManager>();
+            roomsManager.OnDoorOpened();
+        }
 
         ChestController chest = FindAnyObjectByType<ChestController>();
         chest.LoadStatus(data.isChestOpen);
