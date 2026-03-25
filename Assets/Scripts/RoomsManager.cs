@@ -5,7 +5,7 @@ public class RoomsManager : MonoBehaviour
     public GameObject room1;
     public GameObject room2;
     public DoorController doorToRoom2;
-
+    public Animator caracterAnimator;
     void Start()
     {
         room1.SetActive(true);

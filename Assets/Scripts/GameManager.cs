@@ -11,7 +11,9 @@ public class SaveData
 
     public float rotationX, rotationY;
 
-    public bool isDoorOpen, isChestOpen, isHeld;
+    public bool isDoorOpen = false, isChestOpen, isHeld;
+
+    public bool isInRoom2;
 }
 
 public class GameManager : MonoBehaviour
@@ -62,15 +64,23 @@ public class GameManager : MonoBehaviour
         {
             data.rotationX = cam.transform.localRotation.eulerAngles.x;
         }
+        GameObject room1 = GameObject.Find("Room1");
+        bool isRoom1Active = (room1 != null && room1.activeInHierarchy);
+        data.isInRoom2 = !isRoom1Active;
 
-        DoorController door = FindAnyObjectByType<DoorController>();
-        data.isDoorOpen = door.isOpen;
+        if (!data.isInRoom2)
+        {
+            DoorController door = FindAnyObjectByType<DoorController>();
+            data.isDoorOpen = door.isOpen;
 
-        ChestController chest = FindAnyObjectByType<ChestController>();
-        data.isChestOpen = chest.isOpen;
+            ChestController chest = FindAnyObjectByType<ChestController>();
+            data.isChestOpen = chest.isOpen;
 
-        NoteController note = FindAnyObjectByType<NoteController>();
-        data.isHeld = note.isHeld;
+
+            NoteController note = FindAnyObjectByType<NoteController>();
+            data.isHeld = note.isHeld;
+        }
+
 
         try
         {
@@ -120,6 +130,7 @@ public class GameManager : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player");
 
+
         if (player != null)
         {
             if (player.TryGetComponent<CharacterController>(out var controller)) controller.enabled = false;
@@ -145,27 +156,42 @@ public class GameManager : MonoBehaviour
         DoorController door = FindAnyObjectByType<DoorController>();
         door.LoadStatus(data.isDoorOpen);
 
-        if (data.isDoorOpen)
+
+        RoomsManager roomsManager = FindAnyObjectByType<RoomsManager>(FindObjectsInactive.Include);
+
+        if (roomsManager && data.isInRoom2)
         {
-            RoomsManager roomsManager = FindAnyObjectByType<RoomsManager>();
+            roomsManager.OnPlayerEnteredRoom2();
             roomsManager.OnDoorOpened();
-        }
 
-        ChestController chest = FindAnyObjectByType<ChestController>();
-        chest.LoadStatus(data.isChestOpen);
-
-        if (data.isChestOpen)
-        {
-            lockPad = GameObject.FindGameObjectWithTag("Lock");
-            if (lockPad)
+            if (roomsManager.caracterAnimator)
             {
-                lockPad.SetActive(false);
+                roomsManager.caracterAnimator.SetTrigger("StartRising");
+            }
+            else
+            {
+                Debug.LogWarning("Obiectul CaracterAI nu este activ sau nu exista in scena!");
             }
         }
 
-        NoteController note = FindAnyObjectByType<NoteController>();
-        note.LoadStatus(data.isHeld);
+        if (!data.isInRoom2)
+        {
+            ChestController chest = FindAnyObjectByType<ChestController>();
+            chest.LoadStatus(data.isChestOpen);
 
+            if (data.isChestOpen)
+            {
+                lockPad = GameObject.FindGameObjectWithTag("Lock");
+                if (lockPad)
+                {
+                    lockPad.SetActive(false);
+                }
+            }
+
+            NoteController note = FindAnyObjectByType<NoteController>();
+            note.LoadStatus(data.isHeld);
+        }
+        
         if (SceneFader.instance != null)
             SceneFader.instance.FadeIn();
     }

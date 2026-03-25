@@ -24785,6 +24785,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 28a084c3a992a47449bb8dbe5c12edbc, type: 3}
+      propertyPath: m_TagString
+      value: CaracterAI
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 28a084c3a992a47449bb8dbe5c12edbc, type: 3}
       propertyPath: m_Controller
       value: 
@@ -29889,7 +29893,7 @@ GameObject:
   - component: {fileID: 1504672195}
   m_Layer: 0
   m_Name: Room1
-  m_TagString: Untagged
+  m_TagString: Room1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31106,6 +31110,7 @@ MonoBehaviour:
   room1: {fileID: 1504672194}
   room2: {fileID: 1552630590}
   doorToRoom2: {fileID: 2034453663}
+  caracterAnimator: {fileID: 1977498518}
 --- !u!4 &1575259289
 Transform:
   m_ObjectHideFlags: 0

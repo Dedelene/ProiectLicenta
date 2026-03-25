@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Door
   - Lock
+  - Room1
+  - CaracterAI
   layers:
   - Default
   - TransparentFX
