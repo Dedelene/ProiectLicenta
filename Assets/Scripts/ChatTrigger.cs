@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ChatTrigger : MonoBehaviour
 {
-    public GameObject chatUI;
+    public GameObject chatPlayer;
+    public GameObject chatAI;
     public new CameraMovement camera;
     public GameObject crosshair;
 
@@ -12,7 +13,8 @@ public class ChatTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            chatUI.SetActive(true);
+            chatPlayer.SetActive(true);
+            chatAI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             if(camera != null)
@@ -23,6 +25,11 @@ public class ChatTrigger : MonoBehaviour
             {
                 crosshair.SetActive(false);
             }
+            GeminiChatManager manager = FindAnyObjectByType<GeminiChatManager>();
+            if (manager != null)
+            {
+                manager.StartFirstConversation();
+            }
         }
     }
 
@@ -30,7 +37,8 @@ public class ChatTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            chatUI.SetActive(false);
+            chatPlayer.SetActive(false);
+            chatAI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
