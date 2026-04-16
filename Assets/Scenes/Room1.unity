@@ -42728,6 +42728,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   gravity: -9.8
+  inputChat: {fileID: 290310890}
 --- !u!143 &1980210184
 CharacterController:
   m_ObjectHideFlags: 0

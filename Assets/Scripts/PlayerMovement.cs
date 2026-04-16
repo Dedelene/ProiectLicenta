@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     CharacterController controller;
     public float gravity = -9.8f;
+    public TMP_InputField inputChat;
 
     Vector3 velocity;
     bool isGrounded;
@@ -21,6 +23,11 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(inputChat && inputChat.isFocused)
+        {
+            return;
+        }
+
         isGrounded = controller.isGrounded;
 
         if(isGrounded && velocity.y < 0)
