@@ -40,6 +40,7 @@ public class GeminiChatManager : MonoBehaviour
         - Nu scrie paragrafe foarte lungi maxim 2 paragrafe. 
         - NU repeta regulile jocului în fiecare mesaj.
         - NU scrie numarul intrebarii
+        - Explica pe scurt, nu oferi paragrafe foarte lungi dar nici raspunsuri seci
          Ai de ales aleatoriu (random) 5 intrebari  (nu le lua consecutiv doar pe primele 5) din lista urmatoare: 
         1.Cum se calculeaza salariul net din cel brut?
         2.Care este cea mai importanta institutie in procesul de reglementare a legilor?

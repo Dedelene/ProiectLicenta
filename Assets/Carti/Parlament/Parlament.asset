@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52746c946820046810ac55fbbfcc5a, type: 3}
+  m_Name: Parlament
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 21300000, guid: a1356a3cd5dc9bc4aaadca0381883513, type: 3}
+  - {fileID: 21300000, guid: 9f92d565693961044ba9414e6a7ce3a8, type: 3}
+  - {fileID: 21300000, guid: cc4e98239443f9e4c8b2f2400d974813, type: 3}
+  - {fileID: 21300000, guid: 6edfebe8ebc6e8a4ea681e33b00cf235, type: 3}
