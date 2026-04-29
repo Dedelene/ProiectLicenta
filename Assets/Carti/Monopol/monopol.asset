@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f52746c946820046810ac55fbbfcc5a, type: 3}
+  m_Name: monopol
+  m_EditorClassIdentifier: 
+  pages:
+  - {fileID: 21300000, guid: fd37d0329f653b546bbb52cfabfdfa90, type: 3}
+  - {fileID: 21300000, guid: ae1a633294861564e87def8f3e28e754, type: 3}
+  - {fileID: 21300000, guid: 77b7ed6bb539e0e4cab67c27ee570365, type: 3}
