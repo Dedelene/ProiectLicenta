@@ -11,7 +11,7 @@ public class SaveData
 
     public float rotationX, rotationY;
 
-    public bool isDoorOpen = false, isChestOpen, isHeld;
+    public bool isDoorOpen = false, isChestOpen, isHeld, isNoteAttached;
 
     public bool isInRoom2;
 }
@@ -21,7 +21,11 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public static GameManager instance = null;
     string saveFilePath;
-    GameObject lockPad;
+    private GameObject lockPad;
+    private GameObject room1Ref;
+    private DoorController doorRef;
+    private ChestController chestRef;
+    private NoteController noteRef;
 
     void Awake()
     {
@@ -64,21 +68,42 @@ public class GameManager : MonoBehaviour
         {
             data.rotationX = cam.transform.localRotation.eulerAngles.x;
         }
-        GameObject room1 = GameObject.Find("Room1");
-        bool isRoom1Active = (room1 != null && room1.activeInHierarchy);
+        if (room1Ref == null)
+        {
+            room1Ref = GameObject.Find("Room1");
+        }
+        bool isRoom1Active = (room1Ref != null && room1Ref.activeInHierarchy);
         data.isInRoom2 = !isRoom1Active;
 
         if (!data.isInRoom2)
         {
-            DoorController door = FindAnyObjectByType<DoorController>();
-            data.isDoorOpen = door.isOpen;
+            if (doorRef == null)
+            {
+                doorRef = FindAnyObjectByType<DoorController>();
+            }
+            if (doorRef != null)
+            {
+                data.isDoorOpen = doorRef.isOpen;
+            }
 
-            ChestController chest = FindAnyObjectByType<ChestController>();
-            data.isChestOpen = chest.isOpen;
+            if (chestRef == null)
+            {
+                chestRef = FindAnyObjectByType<ChestController>();
+            }
+            if (chestRef != null)
+            {
+                data.isChestOpen = chestRef.isOpen;
+            }
 
-
-            NoteController note = FindAnyObjectByType<NoteController>();
-            data.isHeld = note.isHeld;
+            if (noteRef == null)
+            {
+                noteRef = FindAnyObjectByType<NoteController>();
+            }
+            if (noteRef != null)
+            {
+                data.isHeld = noteRef.isHeld;
+                data.isNoteAttached = noteRef.isAttached;
+            }
         }
 
 
@@ -189,7 +214,7 @@ public class GameManager : MonoBehaviour
             }
 
             NoteController note = FindAnyObjectByType<NoteController>();
-            note.LoadStatus(data.isHeld);
+            note.LoadStatus(data.isHeld, data.isNoteAttached);
         }
         
         if (SceneFader.instance != null)

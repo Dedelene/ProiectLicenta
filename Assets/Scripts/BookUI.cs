@@ -50,7 +50,7 @@ public class BookUI : MonoBehaviour
     
     public void OpenBook(Sprite[] contentPages)
     {
-
+        enabled = true;
         bookUI.SetActive(true);
         if (cameraController) cameraController.enabled = false;
         if (movementController) movementController.enabled = false;
@@ -74,6 +74,7 @@ public class BookUI : MonoBehaviour
     public void CloseBook()
     {
         IsOpen = false;
+        enabled = false;
 
         if (bookUI) bookUI.SetActive(false);
         gameObject.SetActive(false);

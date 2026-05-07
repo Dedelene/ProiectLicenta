@@ -9,12 +9,34 @@ public class PlayerInteraction : MonoBehaviour
 
     private BookInteractable currentBook;
 
+    private float nextRaycastTime = 0f;
+    private readonly float raycastInterval = 0.1f;
+
     void Update()
     {
-        Ray ray = new (cam.transform.position, cam.transform.forward);
-        bool hitSomething = Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactionLayers);
+        if (Time.time >= nextRaycastTime && !BookUI.IsOpen)
+        {
+            nextRaycastTime = Time.time + raycastInterval;
+            CheckForHighlight();
+        }
 
-        if (!BookUI.IsOpen && hitSomething)
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (BookUI.IsOpen) return;
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+
+            Ray ray = new(cam.transform.position, cam.transform.forward);
+            if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactionLayers))
+            {
+                ExecuteInteraction(hit);
+            }
+        }
+    }
+
+    void CheckForHighlight()
+    {
+        Ray ray = new(cam.transform.position, cam.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance, interactionLayers))
         {
             if (hit.collider.TryGetComponent<BookInteractable>(out var book))
             {
@@ -33,19 +55,6 @@ public class PlayerInteraction : MonoBehaviour
         else
         {
             ResetBookHighlight();
-        }
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (BookUI.IsOpen) return;
-
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
-                return;
-
-            if (hitSomething)
-            {
-                ExecuteInteraction(hit);
-            }
         }
     }
 

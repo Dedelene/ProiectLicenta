@@ -12,8 +12,10 @@ public class ChestController : MonoBehaviour
     private Quaternion openedRotation;
 
     public GameObject locker;
+    private Collider chestCollider;
     void Start()
     {
+        chestCollider = GetComponent<Collider>();
         closedRotation = transform.localRotation;
         openedRotation = closedRotation * Quaternion.Euler(0, 0, openAngle);
     }
@@ -35,7 +37,6 @@ public class ChestController : MonoBehaviour
         locker.SetActive(false);
         isOpen = true;
 
-        Collider chestCollider = GetComponent<Collider>();
         if (chestCollider != null) chestCollider.enabled = false;
 
         Quaternion startRot = transform.localRotation;

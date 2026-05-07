@@ -8,6 +8,11 @@ public class ChatTrigger : MonoBehaviour
     public GameObject chatAI;
     public new CameraMovement camera;
     public GameObject crosshair;
+    private GeminiChatManager chatManager;
+    void Start()
+    {
+        chatManager = FindAnyObjectByType<GeminiChatManager>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,9 +31,10 @@ public class ChatTrigger : MonoBehaviour
                 crosshair.SetActive(false);
             }
             GeminiChatManager manager = FindAnyObjectByType<GeminiChatManager>();
-            if (manager != null)
+
+            if (chatManager != null)
             {
-                manager.StartFirstConversation();
+                chatManager.StartFirstConversation();
             }
         }
     }

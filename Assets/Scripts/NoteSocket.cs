@@ -20,6 +20,7 @@ public class NoteSocket : MonoBehaviour
         heldNote.transform.localScale = new Vector3(0.137f, 0.1582279f, 0.1666666f);
 
         heldNote.isHeld = false;
+        heldNote.isAttached = true;
         if(heldNote.GetComponent<Collider>()) heldNote.GetComponent<Collider>().enabled = true;
     }
 }
