@@ -12108,7 +12108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inspectCanvas: {fileID: 945776374}
   inspectImage: {fileID: 43975030}
-  itemSprite: {fileID: 21300000, guid: ec32d6937d0f0384f9f6fb7ea4532d26, type: 3}
+  itemSprite: {fileID: 21300000, guid: 8e0adfa60c2649742b25985d62cff994, type: 3}
   cameraController: {fileID: 963194229}
   movementController: {fileID: 1980210183}
   isInspecting: 0
@@ -27363,7 +27363,7 @@ MonoBehaviour:
   playerBody: {fileID: 1980210182}
   xRotation: 0
   bobSpeed: 12
-  bobAmount: 0.08
+  bobAmount: 0.07
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0

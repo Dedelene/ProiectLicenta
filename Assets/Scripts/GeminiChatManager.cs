@@ -129,6 +129,29 @@ public class GeminiChatManager : MonoBehaviour
 
     private IEnumerator PostRequest(string playerMessage)
     {
+        string dataCurenta = System.DateTime.Now.ToString("yyyyMMdd");
+        string ultimaDataSalvata = PlayerPrefs.GetString("DataUltimuluiApel", "");
+
+        if (ultimaDataSalvata != dataCurenta)
+        {
+            PlayerPrefs.SetInt("MesajeTrimiseAzi", 0);
+            PlayerPrefs.SetString("DataUltimuluiApel", dataCurenta);
+            PlayerPrefs.Save();
+        }
+
+        int mesajeTrimise = PlayerPrefs.GetInt("MesajeTrimiseAzi", 0);
+
+        if (mesajeTrimise >= 50)
+        {
+            string mesajBlocare = "Limita de 50 de mesaje pe ziua de azi a fost atinsa. Ne auzim maine!";
+            aiResponse.text = mesajBlocare;
+            AddToHistory("AI: " + mesajBlocare);
+            yield break;
+        }
+
+        PlayerPrefs.SetInt("MesajeTrimiseAzi", mesajeTrimise + 1);
+        PlayerPrefs.Save();
+
         AddToHistory("Player: " + playerMessage + "\n");
 
         string currentHistory = string.Join("\n", messageLog);
@@ -145,14 +168,13 @@ public class GeminiChatManager : MonoBehaviour
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
             request.SetRequestHeader("Content-Type", "application/json");
-
             request.SetRequestHeader("Authorization", "Bearer " + apiKey);
 
             yield return request.SendWebRequest();
 
             if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
             {
-                Debug.LogError("Eroare de la Google API: " + request.downloadHandler.text);
+                Debug.LogError("Eroare de la Groq API: " + request.downloadHandler.text);
                 aiResponse.text = "Eroare detaliata in Consola!";
             }
             else
@@ -166,7 +188,6 @@ public class GeminiChatManager : MonoBehaviour
                     if (responseText.Contains("200"))
                     {
                         responseText = responseText.Replace("200", "").Trim();
-
                         StartCoroutine(EndGameSequence());
                     }
 
